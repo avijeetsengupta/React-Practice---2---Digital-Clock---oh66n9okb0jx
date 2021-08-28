@@ -12,7 +12,7 @@ function App() {
   }
 
   return (
-    <div className="clock" id="time">
+    <div className="Clock" id="time">
       <h3 id="time">{Time}</h3>
       <button onClick={setTime}>Get Time</button>
     </div>
