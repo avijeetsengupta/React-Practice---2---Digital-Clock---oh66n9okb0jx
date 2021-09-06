@@ -1,23 +1,31 @@
-import React, { useState } from "react";
+import React, {Component, useState} from "react";
+import '../styles/App.css';
 
-function App() {
-  setInterval(setTime, 1000);
-  const time = new Date().toLocaleTimeString();
-  const [Time, newTime] = useState(time);
+class App extends Component {
+    constructor(){
+        super();
+        this.state={time:new Date()};
+    }
+    newTime(){
+    this.setState({time:new Date()});
+    }
+    componentDidMount(){
+        this.interval=setInterval(()=>this.newTime(),1000);
+    }
+    componentWillUnmount(){
+        clearInterval(this.interval);
+    }
+    render() {
 
-  function setTime() {
-    const newTimeZone = new Date().toLocaleTimeString();
-    newTime(newTimeZone);
-    // setInterval(newTimeZone,1000);
-  }
-
-  return (
-    <div className="Clock" id="time">
-      <h3 id="time">{Time}</h3>
-      <button onClick={setTime}>Get Time</button>
-    </div>
-  );
+        return(
+            <>
+              <div className="Clock">
+                  <h3 id="time">{this.state.time.toLocaleTimeString()}</h3>
+                  </div> 
+            </>
+        )
+    }
 }
 
-export default App;
 
+export default App;
